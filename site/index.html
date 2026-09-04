@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a5c4a" />
+  <title>iLD Project Control 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">iLD</span><div><strong>Project Control</strong><small>Factory portfolio 2026</small></div></div>
+      <nav>
+        <button class="nav-item active" data-view="dashboard"><span>◫</span> Overview</button>
+        <button class="nav-item" data-view="projects"><span>☷</span> Project List</button>
+        <button class="nav-item" data-view="timeline"><span>◷</span> Project Tracking</button>
+        <button class="nav-item" data-view="monthly-review"><span>◆</span> Monthly Project Review</button>
+        <button class="nav-item" data-view="meetings"><span>◉</span> Meeting Minutes</button>
+      </nav>
+      <div class="side-note"><span>Nguồn dữ liệu</span><strong>iLD Project tracking 2026</strong><small id="saved-at">Dữ liệu gốc từ Excel</small></div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div><button id="menu-btn" class="icon-btn mobile-only">☰</button><span class="eyebrow">FACTORY PERFORMANCE</span><h1 id="page-title">Portfolio dashboard</h1></div>
+        <div class="top-actions"><label class="global-search"><span>⌕</span><input id="global-search" placeholder="Tìm dự án, leader..." /></label><button id="admin-btn" class="btn ghost">🔒 Đăng nhập quản trị</button><button id="reset-btn" class="btn ghost admin-only">Khôi phục dữ liệu gốc</button><button id="add-btn" class="btn primary admin-only">＋ Thêm dự án</button></div>
+      </header>
+
+      <section id="dashboard" class="view active">
+        <div class="control-row">
+          <div class="segmented" id="period-tabs"><button class="active" data-period="YTD">YTD</button><button data-period="M9">Tháng 9</button><button data-period="Q3">Q3</button><button data-period="H2">H2</button><button data-period="FY">Full year</button></div>
+          <div id="dept-filter" class="multi-filter"></div>
+        </div>
+        <div id="kpi-grid" class="kpi-grid"></div>
+        <div class="dashboard-grid">
+          <article class="panel span-2"><div class="panel-head"><div><span class="eyebrow">PORTFOLIO TREND</span><h2>Tiến độ theo tháng</h2></div><div class="legend"><span><i class="dot done"></i>Hoàn thành</span><span><i class="dot late"></i>Trễ hạn</span><span><i class="dot ongoing"></i>Đang thực hiện</span></div></div><div id="monthly-chart" class="chart-bars"></div></article>
+          <article class="panel"><div class="panel-head"><div><span class="eyebrow">STATUS MIX</span><h2>Cơ cấu trạng thái</h2></div></div><div id="donut-wrap" class="donut-wrap"></div></article>
+          <article class="panel"><div class="panel-head"><div><span class="eyebrow">KEY DRIVERS</span><h2>Tiến độ theo mục tiêu</h2></div></div><div id="driver-list" class="driver-list"></div></article>
+          <article class="panel span-2"><div class="panel-head"><div><span class="eyebrow">MANAGEMENT FOCUS</span><h2>Dự án cần ưu tiên</h2></div><button class="link-btn" data-goto="projects">Xem tất cả →</button></div><div id="priority-table" class="table-wrap"></div></article>
+        </div>
+      </section>
+
+      <section id="projects" class="view">
+        <div class="filter-bar"><input id="project-search" placeholder="Tìm theo tên dự án, hoạt động, leader..." /><div id="status-filter" class="multi-filter"></div><div id="project-dept-filter" class="multi-filter"></div><button id="export-btn" class="btn ghost">⇩ Xuất Excel</button></div>
+        <div class="panel"><div class="table-wrap project-table-wrap"><table class="data-table"><thead><tr><th>No.</th><th>Dự án</th><th>Leader / Dept</th><th>Timing</th><th>Trạng thái</th><th>Tiến độ</th><th>Priority</th><th></th></tr></thead><tbody id="project-tbody"></tbody></table></div><div id="project-count" class="table-footer"></div></div>
+      </section>
+
+      <section id="timeline" class="view">
+        <div class="control-row"><div><span class="eyebrow">PERIOD PERFORMANCE</span><h2>Project Tracking · Monthly · Quarterly · Half year · YTD</h2></div><div id="timeline-dept-filter" class="multi-filter"></div></div>
+        <div id="period-cards" class="period-cards"></div>
+        <article class="panel"><div class="panel-head"><div><span class="eyebrow">PROJECT HEATMAP</span><h2>Tracking dự án 12 tháng</h2></div><span class="helper">1 = Attend · 2 = Absent · NA = Not apply · 4 = Completed</span></div><div id="heatmap" class="heatmap-wrap"></div></article>
+      </section>
+
+      <section id="monthly-review" class="view">
+        <div class="control-row"><div><span class="eyebrow">MONTHLY GOVERNANCE</span><h2>Monthly Project Review</h2></div><span class="helper">Tự động hiển thị dự án Late và On Progress</span></div>
+        <div class="filter-bar"><input id="review-search" placeholder="Tìm dự án, leader, hoạt động..." /><div id="review-status-filter" class="multi-filter"></div><div id="review-dept-filter" class="multi-filter"></div></div>
+        <div id="review-summary" class="review-summary"></div>
+        <div id="review-list" class="review-list"></div>
+      </section>
+
+      <section id="meetings" class="view">
+        <div class="filter-bar"><input id="meeting-search" placeholder="Tìm dự án, action, comment..." /><div id="meeting-status" class="multi-filter"></div><button id="add-meeting-btn" class="btn primary admin-only">＋ Thêm biên bản</button></div>
+        <div id="meeting-list" class="meeting-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="modal" class="modal" aria-hidden="true"><div class="modal-card"><div class="modal-head"><div><span class="eyebrow">PROJECT RECORD</span><h2 id="modal-title">Cập nhật dự án</h2></div><button id="modal-close" class="icon-btn">×</button></div><form id="project-form"><input type="hidden" name="id" /><div class="form-grid" id="form-fields"></div><div class="monthly-editor"><h3>Tracking theo tháng</h3><div id="month-inputs" class="month-inputs"></div></div><div class="modal-actions"><button type="button" id="delete-btn" class="btn danger">Xóa dự án</button><span class="spacer"></span><button type="button" id="cancel-btn" class="btn ghost">Hủy</button><button type="submit" class="btn primary">Lưu cập nhật</button></div></form></div></div>
+  <div id="meeting-modal" class="modal" aria-hidden="true"><div class="modal-card"><div class="modal-head"><div><span class="eyebrow">MEETING RECORD</span><h2 id="meeting-modal-title">Cập nhật biên bản họp</h2></div><button id="meeting-modal-close" class="icon-btn">×</button></div><form id="meeting-form"><input type="hidden" name="id" /><div class="form-grid" id="meeting-form-fields"></div><div class="modal-actions"><button type="button" id="delete-meeting-btn" class="btn danger">Xóa biên bản</button><span class="spacer"></span><button type="button" id="cancel-meeting-btn" class="btn ghost">Hủy</button><button type="submit" class="btn primary">Lưu biên bản</button></div></form></div></div>
+  <div id="admin-modal" class="modal" aria-hidden="true"><div class="modal-card pin-card"><div class="modal-head"><div><span class="eyebrow">ADMIN ACCESS</span><h2>Đăng nhập quản trị</h2></div><button id="admin-modal-close" class="icon-btn">×</button></div><p class="muted">Nhập mã PIN để mở quyền thêm, sửa và xóa dự án trên thiết bị này.</p><form id="admin-form"><div class="field"><label>MÃ PIN</label><input id="admin-pin" type="password" autocomplete="current-password" required /></div><p id="pin-error" class="pin-error" role="alert"></p><div class="modal-actions"><span class="spacer"></span><button type="button" id="admin-cancel" class="btn ghost">Hủy</button><button type="submit" class="btn primary">Đăng nhập</button></div></form></div></div>
+  <div id="toast" class="toast"></div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

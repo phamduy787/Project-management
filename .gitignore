@@ -1,0 +1,5 @@
+project_sources/
+dist/
+*.xlsx
+!source-data/*.xlsx
+__pycache__/
