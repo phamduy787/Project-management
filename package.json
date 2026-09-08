@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "mkdir -p dist/server dist/assets dist/.openai && cp site/index.html site/styles.css site/app.js site/data.js dist/assets/ && cp site/worker.js dist/server/index.js && cp .openai/hosting.json dist/.openai/hosting.json"
+    "build": "mkdir -p dist && cp site/index.html site/styles.css site/app.js site/data.js dist/"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^1.1.0"
+    "@neondatabase/serverless": "^1.0.2"
   }
 }
