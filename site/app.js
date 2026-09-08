@@ -93,3 +93,16 @@ document.addEventListener('click',e=>{if(!e.target.closest('.multi-filter'))$$('
 $$('.multi-filter').forEach(el=>{el.onchange=null;el.oninput=null});
 render();
 Promise.all([loadServerData(),checkAdminStatus()]);
+setInterval(() => {
+  loadServerData();
+}, 4000);
+
+window.addEventListener("focus", () => {
+  loadServerData();
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    loadServerData();
+  }
+});
