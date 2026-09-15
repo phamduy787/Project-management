@@ -49,6 +49,7 @@ module.exports = async function handler(request, response) {
       fyActualVolume: p.fy_actual_volume || "",
       fyInitialCost: p.fy_initial_cost || "",
       fyActualCost: p.fy_actual_cost || ""
+      ,version: p.version || 1
     }));
 
     const meetings = meetingRows.map((m) => ({
@@ -61,6 +62,16 @@ module.exports = async function handler(request, response) {
       finishTime: m.finish_time || "",
       activities: m.activities || "",
       comment: m.comment || ""
+      ,blocker: m.blocker || ""
+      ,decision: m.decision || ""
+      ,action: m.action || ""
+      ,actionOwner: m.action_owner || ""
+      ,dueDate: m.due_date ? String(m.due_date).slice(0, 10) : ""
+      ,actionStatus: m.action_status || "Open"
+      ,reviewState: m.review_state || "Reviewed"
+      ,reviewedBy: m.reviewed_by || ""
+      ,reviewedAt: m.reviewed_at || ""
+      ,reviewMonth: m.review_month || ""
     }));
 
     response.setHeader("Cache-Control", "no-store");
