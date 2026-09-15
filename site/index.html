@@ -32,7 +32,7 @@
 
       <section id="dashboard" class="view active">
         <div class="control-row">
-          <div class="segmented" id="period-tabs"><button class="active" data-period="YTD">YTD</button><button data-period="M9">Tháng 9</button><button data-period="Q3">Q3</button><button data-period="H2">H2</button><button data-period="FY">Full year</button></div>
+          <div class="segmented" id="period-tabs"><button class="active" data-period="YTD">YTD</button><button data-period="CURRENT">Current month</button><button data-period="QUARTER">Current quarter</button><button data-period="HALF">Current half</button><button data-period="FY">Full year</button></div>
           <div id="dept-filter" class="multi-filter"></div>
         </div>
         <div id="kpi-grid" class="kpi-grid"></div>
@@ -56,10 +56,21 @@
       </section>
 
       <section id="monthly-review" class="view">
-        <div class="control-row"><div><span class="eyebrow">MONTHLY GOVERNANCE</span><h2>Monthly Project Review</h2></div><span class="helper">Tự động hiển thị dự án Late và On Progress</span></div>
-        <div class="filter-bar"><input id="review-search" placeholder="Tìm dự án, leader, hoạt động..." /><div id="review-status-filter" class="multi-filter"></div><div id="review-dept-filter" class="multi-filter"></div></div>
+        <div class="control-row"><div><span class="eyebrow">MONTHLY GOVERNANCE</span><h2>Monthly Project Review</h2></div><span class="helper">Meeting Mode · Review, quyết định và action trong một màn hình</span></div>
+        <div class="review-toolbar">
+          <input id="review-search" placeholder="Tìm dự án, leader, hoạt động..." />
+          <div id="review-status-filter" class="multi-filter"></div>
+          <div id="review-dept-filter" class="multi-filter"></div>
+          <div id="review-leader-filter" class="multi-filter"></div>
+          <div id="review-driver-filter" class="multi-filter"></div>
+          <div id="review-state-filter" class="multi-filter"></div>
+          <button id="review-reset-filter" class="btn ghost">Reset filters</button>
+        </div>
         <div id="review-summary" class="review-summary"></div>
-        <div id="review-list" class="review-list"></div>
+        <div class="meeting-mode">
+          <aside id="review-list" class="review-queue"></aside>
+          <section id="review-workspace" class="review-workspace"></section>
+        </div>
       </section>
 
       <section id="meetings" class="view">
