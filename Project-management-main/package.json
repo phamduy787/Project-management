@@ -1,0 +1,11 @@
+{
+  "name": "ild-project-control-2026",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "mkdir -p dist && cp site/index.html site/styles.css site/app.js site/data.js dist/"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2"
+  }
+}
